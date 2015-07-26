@@ -1,7 +1,7 @@
 # GCD-Project
 This is for the Coursera class project "Getting and Cleaning Data"
 ##Part 1
-The run_Analysis function is expecting to run in the same folder as "UCI HAR Dataset." 
+The run_Analysis function is expecting to run in the same folder as "UCI HAR Dataset."  No libraries need to be uploaded.
 The function begins by reading the features text file and creating a list of the rows that contain "mean()" or "std()" in it.
 From there the function takes in the X_train.txt and X_test.txt files, provides column names, and removes all unnecessary columns.
 After that it then uses rbind to create one table.<br>
