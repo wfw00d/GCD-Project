@@ -1,24 +1,23 @@
 run_Analysis<-function() {
-  
-  features<-read.csv("features.txt",header=FALSE,sep=" ")
+  #these first couple of lines read the initial data tables,
+  #name the columns, and cut out the unwanted terciary information
+  features<-read.csv("UCI HAR Dataset/features.txt",header=FALSE,sep=" ")
   meanStdList<-append(grep("mean()",features[,2]),grep("std()",features[,2]))
-  test<-read.table("./test/X_test.txt",header=FALSE,col.names=features[,2])
+  test<-read.table("./UCI HAR Dataset/test/X_test.txt",header=FALSE,col.names=features[,2])
   test<-test[,meanStdList]
-  train<-read.table("train/X_train.txt",header=FALSE,col.names=features[,2])
+  train<-read.table("UCI HAR Dataset/train/X_train.txt",header=FALSE,col.names=features[,2])
   train<-train[,meanStdList]
   toReturn<-rbind(train,test)
-  
-  Subjects<-append(as.vector(read.table("train/subject_train.txt",header=FALSE)[,1]),30 + as.vector(read.table("test/subject_test.txt",header=FALSE)[,1]))
-  Conditions<-append(as.vector(read.table("train/y_train.txt",header=FALSE)[,1]),as.vector(read.table("test/y_test.txt",header=FALSE)[,1]))
-  Verb<-as.vector(read.table("activity_labels.txt",header=FALSE)[,2])
-  action<-vector()
+  #the next couple lines take in the information about the subject and action
+  Subject<-append(as.vector(read.table("UCI HAR Dataset/train/subject_train.txt",header=FALSE)[,1]),30 + as.vector(read.table("UCI HAR Dataset/test/subject_test.txt",header=FALSE)[,1]))
+  Conditions<-append(as.vector(read.table("UCI HAR Dataset/train/y_train.txt",header=FALSE)[,1]),as.vector(read.table("UCI HAR Dataset/test/y_test.txt",header=FALSE)[,1]))
+  Verb<-as.vector(read.table("UCI HAR Dataset/activity_labels.txt",header=FALSE)[,2])
+  #a vector is created with the actions printed out rather than numbered so the data table can be more easily read
+  Action<-vector()
   for (i in Conditions) {
-    action<-append(action,Verb[i])
+    Action<-append(Action,Verb[i])
   }
-  print(length(action))
-  print(length(Subjects))
-  print(nrow(toReturn))
-  toReturn<-cbind(action,toReturn)
-  toReturn<-cbind(Subjects,toReturn)
-  colnames(toReturn)
+  #the Subject and Action columns are added
+  toReturn<-cbind(Action,toReturn)
+  toReturn<-cbind(Subject,toReturn)
 }
