@@ -11,6 +11,14 @@ run_Analysis<-function() {
   Subjects<-append(as.vector(read.table("train/subject_train.txt",header=FALSE)[,1]),30 + as.vector(read.table("test/subject_test.txt",header=FALSE)[,1]))
   Conditions<-append(as.vector(read.table("train/y_train.txt",header=FALSE)[,1]),as.vector(read.table("test/y_test.txt",header=FALSE)[,1]))
   Verb<-as.vector(read.table("activity_labels.txt",header=FALSE)[,2])
-  People<-c("Person A","Person B","Person C","Person D","Person E","Person F","Person G","Person H","Person I","Person J","Person K","Person L","Person M","Person N","Person O","Person P","Person Q","Person R","Person S","Person T","Person U","Person V","Person W","Person X","Person Y","Person Z","Person AA","Person BB","Person CC","Person DD","Person EE","Person FF","Person GG","Person HH","Person II","Person JJ","Person KK","Person LL","Person MM","Person NN","Person OO","Person PP","Person QQ","Person RR","Person SS","Person TT","Person UU","Person VV","Person WW","Person XX","Person YY","Person ZZ","Person AAA","Person BBB")
+  action<-vector()
+  for (i in Conditions) {
+    action<-append(action,Verb[i])
+  }
+  print(length(action))
+  print(length(Subjects))
+  print(nrow(toReturn))
+  toReturn<-cbind(action,toReturn)
+  toReturn<-cbind(Subjects,toReturn)
   colnames(toReturn)
 }
