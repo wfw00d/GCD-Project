@@ -9,8 +9,8 @@ Following those, there are another 20 columns that measure the average accelerat
 
 The remaining columns are again average Fast Fourier Transform values.
 
-BodyAcc-"Body Acceleration"
-GravityAcc-"Gravity Acceleration"
-BodyACCJerk-"Jerk in the Body's movement"
+BodyAcc-"Body Acceleration"<br>
+GravityAcc-"Gravity Acceleration"<br>
+BodyACCJerk-"Jerk in the Body's movement"<br>
 BodyGyro-"Angular Acceleration/Jerk of the body" this would be measured in radians/sec^2 or radians/sec^3 probably
 
